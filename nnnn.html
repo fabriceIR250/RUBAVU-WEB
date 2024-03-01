@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Change Photo</title>
+<style>
+  body {
+    background-color: rgba(0, 0, 0, 0.8); /* Black with 80% opacity */
+  }
+
+  #photo {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+
+<img id="photo" src="your_photo.jpg" alt="Your Photo">
+
+<script>
+  // Array of photo URLs
+  const photos = [
+    'your_photo1.jpg',
+    'your_photo2.jpg',
+    'your_photo3.jpg'
+    // Add more photo URLs here if you have more photos
+  ];
+
+  // Function to change the photo
+  function changePhoto() {
+    const photoElement = document.getElementById('photo');
+    const currentPhotoIndex = photos.indexOf(photoElement.src.split('/').pop());
+
+    // If current photo is the last one in the array, loop back to the first one
+    const nextPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+    const nextPhotoUrl = photos[nextPhotoIndex];
+
+    // Change the source of the image element to the next photo
+    photoElement.src = nextPhotoUrl;
+
+    // Call the function again after 3 seconds
+    setTimeout(changePhoto, 3000);
+  }
+
+  // Call the function to start changing photos
+  changePhoto();
+</script>
+
+</body>
+</html>
